@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database.MainController">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+   <top>
+       <ToolBar prefHeight="33.0" prefWidth="566.0" BorderPane.alignment="CENTER">
+         <items>
+            <HBox styleClass="spaced-hbox">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" stylesheets="@styles.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="31.0">
+                           <image>
+                              <Image url="@icons/homepage_24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@icons/icons8-поиск-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#openAddScene" prefHeight="40.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="29.0">
+                           <image>
+                              <Image url="@icons/add_30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+            <Button mnemonicParsing="false" onAction="#help" prefHeight="40.0" prefWidth="40.0">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@icons/icons8-помощь-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+                  <Button mnemonicParsing="false" onAction="#handleDelete" prefHeight="40.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@icons/delete_30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="140.0" />
+               </padding>
+            </HBox>
+         </items>
+       </ToolBar>
+   </top>
+   <left>
+   </left>
+   <center>
+      <TableView fx:id="tableView" editable="true" prefHeight="321.0" prefWidth="493.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="101.20001220703125" text="Name" />
+           <TableColumn fx:id="colSurname" prefWidth="97.60000610351562" text="Surname" />
+           <TableColumn fx:id="colEmail" prefWidth="109.60000610351562" text="Email" />
+           <TableColumn fx:id="colPhone" prefWidth="83.99997558593748" text="Phone" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox prefHeight="18.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="602.0" text="made by: tttmsnyy, 2025" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <VBox fx:id="btns" prefHeight="294.0" prefWidth="129.0" spacing="20.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Button fx:id = "newBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="131.0" text="Новая таблица" onAction="#createBtn"/>
+            <Button fx:id = "saveBtn" mnemonicParsing="false" prefHeight="28.0" prefWidth="133.0" text="Сохранить" onAction="#saveBtn" />
+            <Button fx:id= "loadBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Загрузить" onAction="#loadBtn" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="70.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+</BorderPane>

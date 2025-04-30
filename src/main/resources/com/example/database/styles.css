@@ -1,0 +1,80 @@
+/* Увеличивает расстояние между всеми кнопками в ToolBar */
+.spaced-hbox {
+    -fx-spacing: 10px; /* Аналог spacing="20" в FXML */
+    -fx-color: #9d24c9;
+
+}
+
+.spaced-hbox .button {
+    -fx-background-radius: 10px;
+}
+
+/*----------------*/
+/* Главный контейнер */
+AnchorPane {
+    -fx-background-color: purple !important;
+}
+
+/* Все дочерние элементы */
+.anchor-pane > * {
+    -fx-background-color: inherit;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: black; /* Цвет текстовой области */
+    -fx-text-fill: white; /* Цвет текста */
+    -fx-border-color: #9d24c9;
+}
+
+.text-area .content {
+    -fx-background-color: -fx-control-inner-background;
+}
+/*----------------*/
+
+BorderPane {
+    -fx-background-color: purple;
+    -fx-font-family: "Arial";
+        -fx-font-size: 14px;
+        -fx-font-color: black;
+}
+
+.tool-bar {
+    -fx-background-color: purple;
+    -fx-padding: 10px;
+}
+
+.table-view {
+        -fx-background-color: linear-gradient(to bottom, black, purple);
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+
+/* Строки таблицы */
+.table-row-cell {
+    -fx-border-color: #e0e0e0;
+}
+
+.button:hover {
+    -fx-background-color: #e7c5eb;
+}
+
+/* Кнопка при нажатии */
+.button:pressed {
+    -fx-background-color: #e7c5eb;
+}
+
+VBox {
+    -fx-background-color: #a47ad6;;
+
+}
+
+#btns {
+        -fx-background-color: transparent;
+        -fx-control-inner-background: black; /* Цвет текстовой области */
+        -fx-text-fill: white; /* Цвет текста */
+}
+
+
+

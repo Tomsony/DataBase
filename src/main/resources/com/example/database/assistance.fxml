@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<AnchorPane prefHeight="365.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database.AssistanceController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+    <children>
+        <!-- Заголовок -->
+        <Text layoutX="20.0" layoutY="40.0" style="-fx-font-size: 20; -fx-font-weight: bold;">
+            <text>Справка по программе</text>
+        </Text>
+
+        <!-- Основной текст -->
+        <TextArea editable="false" layoutX="20.0" layoutY="60.0" prefHeight="300.0" prefWidth="560.0"
+                  wrapText="true" style="-fx-font-size: 14; -fx-background-color: transparent;">
+            <text>
+                Основные функции:
+
+                1. Добавление записи:
+                - Нажмите кнопку "Добавить"
+                - Заполните все поля формы
+                - ID должен быть уникальным числом
+                - Email должен содержать @
+
+                2. Редактирование:
+                - Двойной клик по ячейке таблицы
+                - Введите новое значение
+                - Нажмите Enter для сохранения
+
+                3. Удаление:
+                - Выберите запись в таблице
+                - Нажмите кнопку "Удалить"
+
+                4. Сортировка:
+                - Данные автоматически сортируются по ID
+
+                5. Поиск:
+                - Используйте поле фильтрации для быстрого поиска
+            </text>
+        </TextArea>
+
+        <!-- Кнопка закрытия -->
+        <Button layoutX="270.0" layoutY="350.0"
+                mnemonicParsing="false"
+                onAction="#closeWindow"
+                prefHeight="38.0"
+                prefWidth="80.0"
+                text="Закрыть"/>
+    </children>
+</AnchorPane>
