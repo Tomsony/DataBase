@@ -1,4 +1,5 @@
 package com.example.database;
+///  @author Артём Томских
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,9 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+
+///  Класс реализует шаблон Одиночка, хранит данные объектов person в наблюдаемом списке
+/// @author Артём Томских
 public class PersonRepository {
     // Статическая переменная instance хранит ссылку на единственный экземпляр.
     // Приватный конструктор запрещает создание объекта извне:
@@ -18,7 +22,12 @@ public class PersonRepository {
     //Приватный конструктор
     private PersonRepository() {}
 
-    /** Метод для получения единственного экземпляра */
+    /**Метод получения наблюдаемого списка*/
+    public ObservableList<Person> getObservablePersons() {
+        return persons;
+    }
+
+    /** Метод для получения единственного экземпляра шаблон класса Одиночка*/
     public static PersonRepository getInstance() {
         if (instance == null) {
             instance = new PersonRepository();

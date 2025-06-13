@@ -1,51 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <?import java.net.URL?>
-<VBox prefHeight="240.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.database.AddLineController">
+<!-- Главный контейнер - VBox с центрированным расположением элементов -->
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="350.0"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.database.AddLineController"
+      spacing="10"
+      style="-fx-padding: 20;">
+
+    <!-- Подключение CSS-стилей -->
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-   <children>
-      <GridPane prefHeight="149.0" prefWidth="260.0">
-          <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="59.0" />
-              <ColumnConstraints maxWidth="208.8" minWidth="127.19999618530272" prefWidth="201.8" />
-          </columnConstraints>
-          <rowConstraints>
-              <RowConstraints maxHeight="40.0" minHeight="9.4" prefHeight="9.4" vgrow="SOMETIMES" />
-              <RowConstraints maxHeight="158.40000381469727" minHeight="0.0" prefHeight="30.6" />
-              <RowConstraints />
-              <RowConstraints />
-              <RowConstraints />
-              <RowConstraints />
-          </rowConstraints>
-          <children>
-              <Label alignment="CENTER" prefHeight="18.0" prefWidth="63.0" text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-              <TextField fx:id="idField" maxWidth="190.0" prefHeight="44.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-              <Label alignment="CENTER" prefHeight="18.0" prefWidth="61.0" text="Имя:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-              <TextField fx:id="nameField" maxWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <!-- Заголовок формы -->
+    <Label text="Введите данные для создания новой строки"
+           textAlignment="CENTER"
+           style="-fx-font-weight: bold; -fx-font-size: 14;">
+        <VBox.margin>
+            <Insets bottom="15.0"/>
+        </VBox.margin>
+    </Label>
 
-              <Label alignment="CENTER" prefHeight="18.0" prefWidth="63.0" text="Фамилия:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-              <TextField fx:id="surnameField" maxWidth="190.0" prefHeight="29.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <!-- Сетка для расположения полей ввода -->
+    <GridPane alignment="CENTER" hgap="5" vgap="15">
+        <!-- Определение колонок:
+             - Первая колонка для меток (уменьшенная ширина)
+             - Вторая колонка для полей ввода -->
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="80" prefWidth="90"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="150" prefWidth="200"/>
+        </columnConstraints>
 
-              <Label alignment="CENTER" prefHeight="18.0" prefWidth="62.0" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-              <TextField fx:id="emailField" maxWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <!-- Определение строк (5 строк одинаковой высоты) -->
+        <rowConstraints>
+            <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
+        </rowConstraints>
 
-              <Label alignment="CENTER" prefHeight="18.0" prefWidth="65.0" text="Телефон:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-              <TextField fx:id="phoneField" maxWidth="190.0" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-          </children>
-      </GridPane>
-      <Label alignment="CENTER" prefHeight="53.0" prefWidth="260.0" text="Введите данные для создания новой строки" textAlignment="CENTER">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
-      <Button fx:id="createPerson" mnemonicParsing="false" prefHeight="26.0" prefWidth="280.0" text="Создать" onAction="#handleCreate" />
-   </children>
+        <!-- Блок ID -->
+        <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <!-- Блок Имя -->
+        <Label text="Имя:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <!-- Блок Фамилия -->
+        <Label text="Фамилия:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <!-- Блок Email -->
+        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <!-- Блок Телефон -->
+        <Label text="Телефон:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <!-- Кнопка создания записи -->
+    <Button fx:id="createPerson" text="Создать"
+            onAction="#handleCreate"
+            style="-fx-font-weight: bold; -fx-font-size: 14;"
+            prefWidth="120" prefHeight="35">
+        <VBox.margin>
+            <Insets top="15.0" bottom="15.0"/>
+        </VBox.margin>
+    </Button>
+
+    <!-- Текстовая область для вывода ошибок -->
+    <TextArea fx:id="errorTextArea"
+              prefHeight="90"
+              prefWidth="350"
+              editable="false"
+              style="-fx-text-fill: purple; -fx-opacity: 0.9;"/>
 </VBox>

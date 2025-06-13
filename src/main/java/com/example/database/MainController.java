@@ -1,6 +1,8 @@
 
 package com.example.database;
 
+import javafx.application.Platform;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -19,7 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-// Основной контроллер для управления главным окном приложения
+/// Основной контроллер для управления главным окном приложения
 public class MainController {
     @FXML
     private TableView<Person> tableView; // Таблица для отображения данных
@@ -34,7 +37,16 @@ public class MainController {
     @FXML
     private TableColumn<Person, String> colPhone; // Колонка для телефона
 
+    @FXML private TextField searchField; // Поисковое поле
+
     private final PersonRepository repository = PersonRepository.getInstance(); // Данные для таблицы
+
+    private final FilteredList<Person> filteredData; //Данные для поиска
+
+    //Конструктор для поиска
+    public MainController() {
+        filteredData = new FilteredList<>(PersonRepository.getInstance().getAllPersons(), p -> true);
+    }
 
     @FXML
     public void initialize() {
@@ -50,6 +62,25 @@ public class MainController {
 
         // Установка данных в таблицу
         tableView.setItems(repository.getAllPersons());
+
+        // Настройка поиска
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true; // Показывать все строки если поиск пуст
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                return person.getName().toLowerCase().contains(lowerCaseFilter)
+                        || person.getSurname().toLowerCase().contains(lowerCaseFilter)
+                        || person.getEmail().toLowerCase().contains(lowerCaseFilter)
+                        || person.getPhone().toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(person.getId()).contains(lowerCaseFilter);
+            });
+        });
+
+        tableView.setItems(filteredData);
     }
 
     /**
@@ -151,35 +182,11 @@ public class MainController {
         stage.show();
     }
 
-    /**
-    * Обработка нажатия кнопки Новая таблица
-    */
-    public void createBtn(ActionEvent actionEvent) {
+    public void handleNew(ActionEvent actionEvent) {
         repository.clearAll();
     }
 
-    /**
-     * Обработка нажатия кнопки Сохранить
-     */
-    public void saveBtn(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Сохранить данные");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt"));
-
-        File file = fileChooser.showSaveDialog(tableView.getScene().getWindow());
-        if (file != null) {
-            try {
-                repository.saveToFile(file);
-            } catch (IOException e) {
-                System.err.println("Ошибка сохранения: " + e.getMessage());
-            }
-        }
-    }
-
-    /**
-     * Обработка нажатия кнопки Загрузить
-     */
-    public void loadBtn(ActionEvent actionEvent) {
+    public void handleOpen(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Загрузить данные");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt"));
@@ -194,5 +201,24 @@ public class MainController {
                 System.err.println("Ошибка загрузки" + e.getMessage());
             }
         }
+    }
+
+    public void handleSave(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить данные");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt"));
+
+        File file = fileChooser.showSaveDialog(tableView.getScene().getWindow());
+        if (file != null) {
+            try {
+                repository.saveToFile(file);
+            } catch (IOException e) {
+                System.err.println("Ошибка сохранения: " + e.getMessage());
+            }
+        }
+    }
+
+    public void handleExit(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

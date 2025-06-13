@@ -1,25 +1,25 @@
-/* Увеличивает расстояние между всеми кнопками в ToolBar */
+/* Увеличивает расстояние между кнопками в HBox и задаёт им скруглённые углы */
 .spaced-hbox {
     -fx-spacing: 10px; /* Аналог spacing="20" в FXML */
     -fx-color: #9d24c9;
-
 }
 
 .spaced-hbox .button {
-    -fx-background-radius: 10px;
+    -fx-background-radius: 10px; /* Скругление углов кнопок внутри HBox */
 }
 
 /*----------------*/
-/* Главный контейнер */
+/* Задаёт фиолетовый фон для AnchorPane и наследование фона дочерними элементами */
 AnchorPane {
     -fx-background-color: purple !important;
 }
 
-/* Все дочерние элементы */
+/* Наследование фона всеми дочерними элементами AnchorPane */
 .anchor-pane > * {
     -fx-background-color: inherit;
 }
 
+/* Стилизация TextArea: прозрачный фон, чёрная текстовая область, белый текст, фиолетовая рамка */
 .text-area {
     -fx-background-color: transparent;
     -fx-control-inner-background: black; /* Цвет текстовой области */
@@ -27,54 +27,77 @@ AnchorPane {
     -fx-border-color: #9d24c9;
 }
 
+/* Фон содержимого TextArea */
 .text-area .content {
     -fx-background-color: -fx-control-inner-background;
 }
 /*----------------*/
 
+/* Основные стили BorderPane: фиолетовый фон, шрифт Arial, размер текста 14px */
 BorderPane {
     -fx-background-color: purple;
     -fx-font-family: "Arial";
-        -fx-font-size: 14px;
-        -fx-font-color: black;
+    -fx-font-size: 14px;
+    -fx-font-color: black;
 }
 
+/* Стиль ToolBar: фиолетовый фон, отступы 10px */
 .tool-bar {
     -fx-background-color: purple;
     -fx-padding: 10px;
 }
 
+/* Градиентный фон TableView от чёрного к фиолетовому, шрифт Arial */
 .table-view {
-        -fx-background-color: linear-gradient(to bottom, black, purple);
+    -fx-background-color: linear-gradient(to bottom, black, purple);
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
 }
 
-
-/* Строки таблицы */
+/* Границы строк таблицы */
 .table-row-cell {
     -fx-border-color: #e0e0e0;
 }
 
+/* Эффекты при наведении и нажатии на кнопку */
 .button:hover {
     -fx-background-color: #e7c5eb;
 }
 
-/* Кнопка при нажатии */
 .button:pressed {
     -fx-background-color: #e7c5eb;
 }
 
+/* Фиолетово-сиреневый фон для VBox */
 VBox {
-    -fx-background-color: #a47ad6;;
-
+    -fx-background-color: #a47ad6;
 }
 
+/* Стиль кнопок с ID "btns": прозрачный фон, чёрная область, белый текст */
 #btns {
-        -fx-background-color: transparent;
-        -fx-control-inner-background: black; /* Цвет текстовой области */
-        -fx-text-fill: white; /* Цвет текста */
+    -fx-background-color: transparent;
+    -fx-control-inner-background: black;
+    -fx-text-fill: white;
 }
 
+/* Стиль поля поиска: серый placeholder, скруглённые углы, фиолетовая рамка */
+.text-field {
+    -fx-prompt-text-fill: #999999;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #9d24c9;
+    -fx-padding: 5px 10px;
+}
 
+/* Цвет отфильтрованных строк в TableView (полупрозрачный сиреневый) */
+.table-view {
+    -fx-filtered-row-color: #e7c5eb80;
+}
 
+/* Стиль MenuBar: светло-сиреневый фон, белый текст, шрифт Arial */
+.menu-bar {
+    -fx-background-color: #e7c5eb;
+    -fx-font-color: white;
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+}

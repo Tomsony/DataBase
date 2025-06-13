@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+///  Класс реализует обработку закрытия окна
 public class AssistanceController {
     @FXML
     private Text title;

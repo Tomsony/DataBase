@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -12,7 +13,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-// Контроллер для окна добавления новой записи
+/// Контроллер для окна добавления новой записи
+/// @author Артём Томских
 public class AddLineController {
     // Поля ввода для данных о человеке
     @FXML
@@ -55,7 +57,8 @@ public class AddLineController {
             );
 
             //Добавление человека через главный контроллер
-            mainController.addPerson(person);
+           // mainController.addPerson(person);
+            repository.addPerson(person);
 
             // Закрытие окна
             closeWindow();
@@ -64,6 +67,10 @@ public class AddLineController {
         } catch (NumberFormatException e) {
             showError("Некорректный ввод данных!");
         }
+    }
+
+    private void showError(String errorMessage) {
+        errorTextArea.setText(errorMessage);
     }
 
     /** Метод для валидации введенных данных */
@@ -97,27 +104,13 @@ public class AddLineController {
         ((Stage) idField.getScene().getWindow()).close();
     }
 
-    /** Метод для отображения ошибки */
-    private void showError(String message) {
-        try{
-                // Создание загрузчика FXML для файла интерфейса нового окна
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("validation.fxml"));
-                Parent root = loader.load();
+    @FXML
+    private TextArea errorTextArea;
 
-                // Получаем контроллер и устанавливаем сообщение
-                ValidationController controller = loader.getController();
-                controller.setErrorMessage(message);
-
-                // Настройка окна
-                Stage stage = new Stage();
-                Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/database/icons/logo-16x16.png")));
-                stage.getIcons().add(icon);
-                stage.setScene(new Scene(root));
-                stage.setTitle("Ошибка валидации!");
-                stage.show();
-
-        } catch (IOException e){
-            System.err.println("Ошибка загрузка окна ошибок валидации: " + e.getMessage());
+        public void setErrorMessage(String message)
+        {
+        errorTextArea.setText(message);
+        errorTextArea.requestLayout();
         }
-    }
+
 }

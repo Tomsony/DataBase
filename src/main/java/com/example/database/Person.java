@@ -2,7 +2,8 @@ package com.example.database;
 
 import javafx.beans.property.*;
 
-//Класс для создания экземпляра Person и связи данных с JavaFX элементами
+///Класс для создания экземпляра Person и связи данных с JavaFX элементами
+/// @author Артём Томских
 public class Person {
     private final IntegerProperty id;
     private final StringProperty name;
