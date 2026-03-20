@@ -2,54 +2,123 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane prefHeight="365.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database.AssistanceController">
+
+<?import javafx.scene.shape.Line?>
+<AnchorPane prefHeight="450.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.database.AssistanceController"
+            styleClass="assistance-root">
+
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
+
     <children>
-        <!-- Заголовок -->
-        <Text layoutX="20.0" layoutY="40.0" style="-fx-font-size: 20; -fx-font-weight: bold;">
-            <text>Справка по программе</text>
+        <!-- Заголовок с иконкой -->
+        <Text layoutX="30.0" layoutY="50.0" styleClass="assistance-title">
+            📚 Справка по программе
         </Text>
 
-        <!-- Основной текст -->
-        <TextArea editable="false" layoutX="20.0" layoutY="60.0" prefHeight="300.0" prefWidth="560.0"
-                  wrapText="true" style="-fx-font-size: 14; -fx-background-color: transparent;">
-            <text>
-                Основные функции:
+        <!-- Подзаголовок -->
+        <Text layoutX="30.0" layoutY="80.0" styleClass="assistance-subtitle">
+            Руководство пользователя
+        </Text>
 
-                1. Добавление записи:
-                - Нажмите кнопку "Добавить"
-                - Заполните все поля формы
-                - ID должен быть уникальным числом
-                - Email должен содержать @
+        <!-- Декоративная линия -->
+        <Line startX="30.0" startY="95.0" endX="570.0" endY="95.0"
+              styleClass="assistance-line" />
 
-                2. Редактирование:
-                - Двойной клик по ячейке таблицы
-                - Введите новое значение
-                - Нажмите Enter для сохранения
+        <!-- Контейнер с прокруткой для текста -->
+        <ScrollPane layoutX="30.0" layoutY="110.0"
+                    prefHeight="280.0" prefWidth="540.0"
+                    styleClass="assistance-scroll-pane"
+                    fitToWidth="true">
+            <content>
+                <VBox spacing="15" styleClass="assistance-content-container">
+                    <children>
+                        <!-- Раздел 1: Добавление записи -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Добавление записи
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Нажмите кнопку "Добавить" на панели инструментов</Text>
+                            <Text styleClass="assistance-section-text">• Заполните все поля в открывшейся форме</Text>
+                            <Text styleClass="assistance-section-text">• ID должен быть уникальным целым числом</Text>
+                            <Text styleClass="assistance-section-text">• Email должен содержать символ @ (например, name@domain.com)</Text>
+                            <Text styleClass="assistance-section-text">• Нажмите "Создать" для сохранения записи</Text>
+                        </VBox>
 
-                3. Удаление:
-                - Выберите запись в таблице
-                - Нажмите кнопку "Удалить"
+                        <!-- Раздел 2: Редактирование -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Редактирование
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Выполните двойной клик по ячейке таблицы</Text>
+                            <Text styleClass="assistance-section-text">• Введите новое значение</Text>
+                            <Text styleClass="assistance-section-text">• Нажмите Enter для сохранения или Esc для отмены</Text>
+                        </VBox>
 
-                4. Сортировка:
-                - Данные автоматически сортируются по ID
+                        <!-- Раздел 3: Удаление -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Удаление
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Выберите запись в таблице (один клик)</Text>
+                            <Text styleClass="assistance-section-text">• Нажмите кнопку "Удалить" на панели инструментов</Text>
+                            <Text styleClass="assistance-section-text">• Подтвердите удаление в диалоговом окне</Text>
+                        </VBox>
 
-                5. Поиск:
-                - Используйте поле фильтрации для быстрого поиска
-            </text>
-        </TextArea>
+                        <!-- Раздел 4: Поиск и фильтрация -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Поиск и фильтрация
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Используйте поле "Поиск..." в верхней панели</Text>
+                            <Text styleClass="assistance-section-text">• Поиск выполняется по всем полям</Text>
+                            <Text styleClass="assistance-section-text">• Регистр букв не учитывается</Text>
+                        </VBox>
+
+                        <!-- Раздел 5: Работа с файлами -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Работа с файлами
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Меню "Файл" → "Сохранить" - сохранить данные в файл</Text>
+                            <Text styleClass="assistance-section-text">• Меню "Файл" → "Открыть" - загрузить данные из файла</Text>
+                            <Text styleClass="assistance-section-text">• Меню "Файл" → "Создать" - очистить все данные</Text>
+                        </VBox>
+
+                        <!-- Раздел 6: Горячие клавиши -->
+                        <VBox styleClass="assistance-section">
+                            <Text styleClass="assistance-section-title">
+                                Горячие клавиши
+                            </Text>
+                            <Text styleClass="assistance-section-text">• Ctrl+N - Создать новый файл</Text>
+                            <Text styleClass="assistance-section-text">• Ctrl+O - Открыть файл</Text>
+                            <Text styleClass="assistance-section-text">• Ctrl+S - Сохранить файл</Text>
+                            <Text styleClass="assistance-section-text">• Del - Удалить выбранную запись</Text>
+                            <Text styleClass="assistance-section-text">• F1 - Открыть справку</Text>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
 
         <!-- Кнопка закрытия -->
-        <Button layoutX="270.0" layoutY="350.0"
+        <Button layoutX="250.0" layoutY="400.0"
                 mnemonicParsing="false"
                 onAction="#closeWindow"
-                prefHeight="38.0"
-                prefWidth="80.0"
-                text="Закрыть"/>
+                prefHeight="40.0"
+                prefWidth="100.0"
+                text="Закрыть"
+                styleClass="assistance-close-button" />
+
+        <!-- Информация о версии -->
+        <Text layoutX="30.0" layoutY="435.0" styleClass="assistance-version-text">
+            Версия справки: 1.0 | © 2025 tttmsnyy
+        </Text>
     </children>
 </AnchorPane>

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<!-- Главный контейнер - VBox с центрированным расположением элементов -->
+
+<!--
+  Главный контейнер – VBox с центрированным расположением элементов.
+  Используется для формы ввода данных новой записи.
+  Размеры: 400x350, внутренние отступы 20 пикселей.
+-->
 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="350.0"
       xmlns="http://javafx.com/javafx/17.0.12"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -14,7 +19,7 @@
       spacing="10"
       style="-fx-padding: 20;">
 
-    <!-- Подключение CSS-стилей -->
+    <!-- Подключение CSS-стилей (единый стиль с главным окном) -->
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
@@ -31,8 +36,8 @@
     <!-- Сетка для расположения полей ввода -->
     <GridPane alignment="CENTER" hgap="5" vgap="15">
         <!-- Определение колонок:
-             - Первая колонка для меток (уменьшенная ширина)
-             - Вторая колонка для полей ввода -->
+             - Первая колонка для меток (ширина 80-90 пикселей)
+             - Вторая колонка для полей ввода (ширина 150-200 пикселей) -->
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="80" prefWidth="90"/>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="150" prefWidth="200"/>
@@ -47,13 +52,17 @@
             <RowConstraints minHeight="30" prefHeight="35" vgrow="SOMETIMES"/>
         </rowConstraints>
 
-        <!-- Блок ID -->
+        <!-- Блок ID: метка и поле ввода с подсказкой -->
         <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <tooltip>
+                <Tooltip text="Уникальный числовой идентификатор (целое число)" />
+            </tooltip>
+        </TextField>
 
         <!-- Блок Имя -->
         <Label text="Имя:" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -61,7 +70,11 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <tooltip>
+                <Tooltip text="Введите имя (только буквы)" />
+            </tooltip>
+        </TextField>
 
         <!-- Блок Фамилия -->
         <Label text="Фамилия:" GridPane.columnIndex="0" GridPane.rowIndex="2">
@@ -69,7 +82,11 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <tooltip>
+                <Tooltip text="Введите фамилию (только буквы)" />
+            </tooltip>
+        </TextField>
 
         <!-- Блок Email -->
         <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3">
@@ -77,7 +94,11 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <tooltip>
+                <Tooltip text="Введите корректный email (например, name@domain.com)" />
+            </tooltip>
+        </TextField>
 
         <!-- Блок Телефон -->
         <Label text="Телефон:" GridPane.columnIndex="0" GridPane.rowIndex="4">
@@ -85,7 +106,11 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <tooltip>
+                <Tooltip text="Введите номер телефона в любом формате" />
+            </tooltip>
+        </TextField>
     </GridPane>
 
     <!-- Кнопка создания записи -->
@@ -96,12 +121,20 @@
         <VBox.margin>
             <Insets top="15.0" bottom="15.0"/>
         </VBox.margin>
+        <tooltip>
+            <Tooltip text="Создать новую запись с введёнными данными" />
+        </tooltip>
     </Button>
 
-    <!-- Текстовая область для вывода ошибок -->
+    <!-- Текстовая область для вывода ошибок (например, неверный формат ID) -->
     <TextArea fx:id="errorTextArea"
               prefHeight="90"
               prefWidth="350"
               editable="false"
-              style="-fx-text-fill: purple; -fx-opacity: 0.9;"/>
+              style="-fx-text-fill: purple; -fx-opacity: 0.9;">
+        <!-- Подсказка для поля ошибок не требуется, но можно добавить пояснение -->
+        <tooltip>
+            <Tooltip text="Здесь отображаются сообщения об ошибках ввода" />
+        </tooltip>
+    </TextArea>
 </VBox>

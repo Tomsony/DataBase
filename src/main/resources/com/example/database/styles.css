@@ -1,103 +1,286 @@
-/* Увеличивает расстояние между кнопками в HBox и задаёт им скруглённые углы */
+/* ========== ОБЩИЕ СТИЛИ ========== */
+
+/* Стили для HBox с кнопками на панели инструментов */
 .spaced-hbox {
-    -fx-spacing: 10px; /* Аналог spacing="20" в FXML */
-    -fx-color: #9d24c9;
+    -fx-spacing: 10px; /* Расстояние между кнопками внутри HBox */
 }
 
+/* Скругление углов для всех кнопок внутри HBox с классом spaced-hbox */
 .spaced-hbox .button {
-    -fx-background-radius: 10px; /* Скругление углов кнопок внутри HBox */
+    -fx-background-radius: 10px; /* Скругление углов кнопок */
 }
 
-/*----------------*/
-/* Задаёт фиолетовый фон для AnchorPane и наследование фона дочерними элементами */
-AnchorPane {
-    -fx-background-color: purple !important;
-}
+/* ========== СТИЛИ ДЛЯ ТЕКСТОВЫХ ОБЛАСТЕЙ (TextArea) ========== */
 
-/* Наследование фона всеми дочерними элементами AnchorPane */
-.anchor-pane > * {
-    -fx-background-color: inherit;
-}
-
-/* Стилизация TextArea: прозрачный фон, чёрная текстовая область, белый текст, фиолетовая рамка */
+/* Основные стили для всех TextArea в приложении */
 .text-area {
-    -fx-background-color: transparent;
-    -fx-control-inner-background: black; /* Цвет текстовой области */
-    -fx-text-fill: white; /* Цвет текста */
-    -fx-border-color: #9d24c9;
+    -fx-background-color: transparent; /* Прозрачный фон для всей области */
+    -fx-control-inner-background: rgba(157, 36, 201, 0.2); /* Фиолетовый полупрозрачный фон для текстовой области */
+    -fx-text-fill: #4a2c7a; /* Тёмно-фиолетовый цвет текста */
+    -fx-border-color: #9d24c9; /* Фиолетовая рамка */
+    -fx-border-radius: 10px; /* Скругление углов рамки */
+    -fx-background-radius: 10px; /* Скругление углов фона */
 }
 
-/* Фон содержимого TextArea */
+/* Стиль для внутреннего контента TextArea (область с текстом) */
 .text-area .content {
-    -fx-background-color: -fx-control-inner-background;
+    -fx-background-color: -fx-control-inner-background; /* Используем тот же фон, что и у control-inner-background */
+    -fx-border-radius: 10px; /* Скругление углов для контента */
 }
-/*----------------*/
 
-/* Основные стили BorderPane: фиолетовый фон, шрифт Arial, размер текста 14px */
+/* ========== СТИЛИ ДЛЯ ГЛАВНОГО ОКНА (BorderPane) ========== */
+
+/* Основные стили для BorderPane (главное окно) */
 BorderPane {
-    -fx-background-color: purple;
-    -fx-font-family: "Arial";
-    -fx-font-size: 14px;
-    -fx-font-color: black;
+    -fx-background-color: purple; /* Фиолетовый фон */
+    -fx-font-family: "Arial"; /* Шрифт Arial */
+    -fx-font-size: 14px; /* Размер шрифта 14 пикселей */
 }
 
-/* Стиль ToolBar: фиолетовый фон, отступы 10px */
+/* ========== СТИЛИ ДЛЯ ПАНЕЛИ ИНСТРУМЕНТОВ ========== */
+
+/* Стиль для ToolBar (панель инструментов) */
 .tool-bar {
-    -fx-background-color: purple;
-    -fx-padding: 10px;
+    -fx-background-color: purple; /* Фиолетовый фон */
+    -fx-padding: 10px; /* Внутренние отступы 10px со всех сторон */
 }
 
-/* Градиентный фон TableView от чёрного к фиолетовому, шрифт Arial */
+/* ========== СТИЛИ ДЛЯ ТАБЛИЦЫ (TableView) ========== */
+
+/* Градиентный фон для TableView от чёрного к фиолетовому */
 .table-view {
-    -fx-background-color: linear-gradient(to bottom, black, purple);
-    -fx-font-family: "Arial";
-    -fx-font-size: 14px;
+    -fx-background-color: linear-gradient(to bottom, black, purple); /* Градиент сверху вниз */
+    -fx-font-family: "Arial"; /* Шрифт Arial */
+    -fx-font-size: 14px; /* Размер шрифта 14px */
 }
 
-/* Границы строк таблицы */
+/* Стиль для строк таблицы */
 .table-row-cell {
-    -fx-border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0; /* Светло-серый цвет границ между строками */
 }
 
-/* Эффекты при наведении и нажатии на кнопку */
-.button:hover {
-    -fx-background-color: #e7c5eb;
-}
-
-.button:pressed {
-    -fx-background-color: #e7c5eb;
-}
-
-/* Фиолетово-сиреневый фон для VBox */
-VBox {
-    -fx-background-color: #a47ad6;
-}
-
-/* Стиль кнопок с ID "btns": прозрачный фон, чёрная область, белый текст */
-#btns {
-    -fx-background-color: transparent;
-    -fx-control-inner-background: black;
-    -fx-text-fill: white;
-}
-
-/* Стиль поля поиска: серый placeholder, скруглённые углы, фиолетовая рамка */
-.text-field {
-    -fx-prompt-text-fill: #999999;
-    -fx-background-radius: 15px;
-    -fx-border-radius: 15px;
-    -fx-border-color: #9d24c9;
-    -fx-padding: 5px 10px;
-}
-
-/* Цвет отфильтрованных строк в TableView (полупрозрачный сиреневый) */
+/* Цвет для отфильтрованных/выделенных строк в таблице */
 .table-view {
-    -fx-filtered-row-color: #e7c5eb80;
+    -fx-filtered-row-color: #e7c5eb80; /* Полупрозрачный сиреневый цвет */
 }
 
-/* Стиль MenuBar: светло-сиреневый фон, белый текст, шрифт Arial */
-.menu-bar {
-    -fx-background-color: #e7c5eb;
-    -fx-font-color: white;
-    -fx-font-family: Arial;
-    -fx-font-size: 14px;
+/* ========== СТИЛИ ДЛЯ КНОПОК ========== */
+
+/* Эффект при наведении курсора на кнопку */
+.button:hover {
+    -fx-background-color: #e7c5eb; /* Светло-сиреневый фон */
 }
+
+/* Эффект при нажатии на кнопку */
+.button:pressed {
+    -fx-background-color: #e7c5eb; /* Светло-сиреневый фон (такой же, как при наведении) */
+}
+
+/* ========== СТИЛИ ДЛЯ VBOX ========== */
+
+/* Фиолетово-сиреневый фон для всех VBox контейнеров */
+VBox {
+    -fx-background-color: #a47ad6; /* Средне-фиолетовый цвет */
+}
+
+/* ========== СТИЛИ ДЛЯ КНОПОК С ID "btns" ========== */
+
+/* Специальный стиль для кнопок с идентификатором "btns" */
+#btns {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-control-inner-background: black; /* Чёрный фон для внутренней области */
+    -fx-text-fill: white; /* Белый цвет текста */
+}
+
+/* ========== СТИЛИ ДЛЯ ПОЛЕЙ ВВОДА (TextField) ========== */
+
+/* Стиль для всех текстовых полей ввода */
+.text-field {
+    -fx-prompt-text-fill: #999999; /* Серый цвет для текста-подсказки (placeholder) */
+    -fx-background-radius: 15px; /* Скругление углов фона */
+    -fx-border-radius: 15px; /* Скругление углов рамки */
+    -fx-border-color: #9d24c9; /* Фиолетовый цвет рамки */
+    -fx-padding: 5px 10px; /* Внутренние отступы: 5px сверху/снизу, 10px слева/справа */
+}
+
+/* ========== СТИЛИ ДЛЯ МЕНЮ (MenuBar) ========== */
+
+/* Стиль для строки меню в верхней части приложения */
+.menu-bar {
+    -fx-background-color: #e7c5eb; /* Светло-сиреневый фон */
+    -fx-text-fill: white; /* Белый цвет текста (не работает для MenuBar, нужен другой подход) */
+    -fx-font-family: Arial; /* Шрифт Arial */
+    -fx-font-size: 14px; /* Размер шрифта 14px */
+}
+
+/* ========== СТИЛИ ДЛЯ ОКНА СПРАВКИ (assistance.fxml) ========== */
+
+/* Главный контейнер окна справки */
+.assistance-root {
+    -fx-background-color: linear-gradient(to bottom, #f5f0ff, #e6d9ff); /* Градиент от светло-фиолетового к более насыщенному */
+}
+
+/* Заголовок окна справки */
+.assistance-title {
+    -fx-font-size: 28px; /* Крупный размер шрифта для заголовка */
+    -fx-font-weight: bold; /* Жирное начертание */
+    -fx-fill: #4a2c7a; /* Тёмно-фиолетовый цвет текста */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 2, 2); /* Лёгкая тень для объёма */
+}
+
+/* Подзаголовок окна справки */
+.assistance-subtitle {
+    -fx-font-size: 14px; /* Стандартный размер шрифта */
+    -fx-fill: #666666; /* Серый цвет текста */
+}
+
+/* Декоративная линия под заголовком */
+.assistance-line {
+    -fx-stroke: #9d24c9; /* Фиолетовый цвет линии */
+    -fx-stroke-width: 2; /* Толщина линии 2 пикселя */
+    -fx-effect: dropshadow(gaussian, rgba(157,36,201,0.3), 3, 0, 0, 1); /* Лёгкая фиолетовая тень */
+}
+
+/* ========== СТИЛИ ДЛЯ ПРОКРУЧИВАЕМОЙ ОБЛАСТИ ========== */
+
+/* Стиль для ScrollPane в окне справки */
+.assistance-scroll-pane {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-background: transparent; /* Прозрачный фон (дополнительно) */
+    -fx-border-color: #9d24c9; /* Фиолетовая рамка */
+    -fx-border-radius: 10px; /* Скругление углов рамки */
+    -fx-background-radius: 10px; /* Скругление углов фона */
+}
+
+/* Стиль для области просмотра внутри ScrollPane */
+.assistance-scroll-pane .viewport {
+    -fx-background-color: transparent; /* Прозрачный фон */
+}
+
+/* ========== СТИЛИ ДЛЯ ПОЛОСЫ ПРОКРУТКИ ========== */
+
+/* Стиль для вертикальной полосы прокрутки */
+.assistance-scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-background-radius: 5px; /* Небольшое скругление */
+}
+
+/* Стиль для бегунка полосы прокрутки */
+.assistance-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #9d24c9; /* Фиолетовый цвет бегунка */
+    -fx-background-radius: 5px; /* Скругление углов бегунка */
+}
+
+/* Стиль для бегунка при наведении */
+.assistance-scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #b44ae6; /* Более светлый фиолетовый при наведении */
+}
+
+/* Скрытие кнопок увеличения/уменьшения на полосе прокрутки */
+.assistance-scroll-pane .scroll-bar:vertical .increment-button,
+.assistance-scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-padding: 0; /* Убираем отступы */
+}
+
+/* ========== СТИЛИ ДЛЯ КОНТЕЙНЕРА С КОНТЕНТОМ ========== */
+
+/* Контейнер для всего текстового содержимого справки */
+.assistance-content-container {
+    -fx-padding: 15px; /* Внутренние отступы 15px со всех сторон */
+    -fx-background-color: rgba(255, 255, 255, 0.8); /* Белый полупрозрачный фон (80% непрозрачности) */
+    -fx-background-radius: 10px; /* Скругление углов фона */
+    -fx-border-radius: 10px; /* Скругление углов рамки */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); /* Лёгкая тень под контейнером */
+}
+
+/* ========== СТИЛИ ДЛЯ РАЗДЕЛОВ СПРАВКИ ========== */
+
+/* Каждый отдельный раздел в справке (Добавление, Редактирование и т.д.) */
+.assistance-section {
+    -fx-spacing: 8px; /* Расстояние между элементами внутри раздела */
+    -fx-padding: 10px; /* Внутренние отступы 10px */
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Белый полупрозрачный фон (50%) */
+    -fx-background-radius: 8px; /* Скругление углов фона */
+    -fx-border-radius: 8px; /* Скругление углов рамки */
+    -fx-border-color: rgba(157, 36, 201, 0.3); /* Фиолетовая полупрозрачная рамка */
+    -fx-border-width: 1; /* Толщина рамки 1px */
+}
+
+/* Эффект при наведении на раздел */
+.assistance-section:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.8); /* Более непрозрачный белый фон (80%) */
+    -fx-border-color: #9d24c9; /* Фиолетовая рамка (полностью непрозрачная) */
+    -fx-effect: dropshadow(gaussian, rgba(157,36,201,0.2), 5, 0, 0, 2); /* Фиолетовая тень */
+}
+
+/* Заголовок раздела (например, "➕ Добавление записи") */
+.assistance-section-title {
+    -fx-font-size: 16px; /* Размер шрифта 16px */
+    -fx-font-weight: bold; /* Жирное начертание */
+    -fx-fill: #4a2c7a; /* Тёмно-фиолетовый цвет текста */
+}
+
+/* Обычный текст внутри раздела */
+.assistance-section-text {
+    -fx-font-size: 14px; /* Размер шрифта 14px */
+    -fx-fill: #333333; /* Тёмно-серый цвет текста */
+}
+
+/* ========== СТИЛИ ДЛЯ КНОПКИ ЗАКРЫТИЯ ========== */
+
+/* Кнопка "Закрыть" в окне справки */
+.assistance-close-button {
+    -fx-background-color: #9d24c9; /* Фиолетовый фон */
+    -fx-text-fill: white; /* Белый цвет текста */
+    -fx-font-weight: bold; /* Жирное начертание */
+    -fx-font-size: 14px; /* Размер шрифта 14px */
+    -fx-background-radius: 20px; /* Сильное скругление углов (овальная кнопка) */
+    -fx-padding: 8px 20px; /* Внутренние отступы: 8px сверху/снизу, 20px слева/справа */
+    -fx-cursor: hand; /* Курсор в виде руки при наведении */
+    -fx-effect: dropshadow(gaussian, rgba(157,36,201,0.4), 8, 0, 0, 3); /* Фиолетовая тень */
+}
+
+/* Эффект при наведении на кнопку закрытия */
+.assistance-close-button:hover {
+    -fx-background-color: #b44ae6; /* Более светлый фиолетовый */
+    -fx-effect: dropshadow(gaussian, rgba(157,36,201,0.6), 12, 0, 0, 4); /* Более сильная тень */
+    -fx-scale-x: 1.05; /* Увеличение по горизонтали на 5% */
+    -fx-scale-y: 1.05; /* Увеличение по вертикали на 5% */
+}
+
+/* Эффект при нажатии на кнопку закрытия */
+.assistance-close-button:pressed {
+    -fx-background-color: #7a1ea3; /* Тёмно-фиолетовый */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1); /* Тёмная тень */
+    -fx-scale-x: 0.98; /* Небольшое сжатие при нажатии */
+    -fx-scale-y: 0.98; /* Небольшое сжатие при нажатии */
+}
+
+/* ========== СТИЛИ ДЛЯ ТЕКСТА ВЕРСИИ ========== */
+
+/* Текст с информацией о версии внизу окна справки */
+.assistance-version-text {
+    -fx-font-size: 10px; /* Мелкий шрифт */
+    -fx-fill: #999999; /* Светло-серый цвет текста */
+}
+
+/* ========== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ========== */
+
+/* Стиль для поддержки эмодзи в заголовках разделов */
+.assistance-section-title .text {
+    -fx-font-family: "Segoe UI Emoji", "Arial"; /* Шрифт с поддержкой эмодзи, затем Arial как запасной */
+}
+
+/* ========== ПРИМЕЧАНИЯ ========== */
+
+/*
+   Цветовая схема приложения основана на фиолетовых тонах:
+   - #9d24c9 - основной фиолетовый (кнопки, рамки)
+   - #4a2c7a - тёмно-фиолетовый (заголовки)
+   - #e7c5eb - светло-сиреневый (hover эффекты, меню)
+   - #a47ad6 - средне-фиолетовый (фоны VBox)
+
+   Градиенты используются для создания глубины и визуального интереса.
+   Полупрозрачные фоны создают эффект "стекла" (glass effect).
+*/

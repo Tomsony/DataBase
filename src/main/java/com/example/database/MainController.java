@@ -1,4 +1,3 @@
-
 package com.example.database;
 
 import javafx.application.Platform;
@@ -8,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -182,10 +179,18 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Обработчик для создания нового файла/очистки данных
+     * @param actionEvent Событие нажатия на пункт меню "New"
+     */
     public void handleNew(ActionEvent actionEvent) {
         repository.clearAll();
     }
 
+    /**
+     * Обработчик для открытия и загрузки данных из файла
+     * @param actionEvent Событие нажатия на пункт меню "Open"
+     */
     public void handleOpen(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Загрузить данные");
@@ -203,6 +208,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Обработчик для сохранения данных в файл
+     * @param actionEvent Событие нажатия на пункт меню "Save"
+     */
     public void handleSave(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Сохранить данные");
@@ -218,7 +227,82 @@ public class MainController {
         }
     }
 
+    /**
+     * Обработчик для выхода из приложения
+     * @param actionEvent Событие нажатия на пункт меню "Exit"
+     */
     public void handleExit(ActionEvent actionEvent) {
         Platform.exit();
+    }
+
+    /**
+     * Обновление данных в таблице
+     * Метод обновляет отображение таблицы, получая актуальные данные из репозитория
+     * и очищает поле поиска для сброса фильтрации
+     *
+     * @param actionEvent Событие, вызвавшее обновление (нажатие кнопки или пункта меню)
+     */
+    @FXML
+    private void handleRefresh(ActionEvent actionEvent) {
+        // Получаем актуальный список всех персон из репозитория и устанавливаем его в таблицу
+        tableView.setItems(repository.getAllPersons());
+
+        // Очищаем поле поиска, чтобы сбросить все примененные фильтры
+        searchField.clear();
+
+        // Выводим сообщение в консоль для отладки
+        System.out.println("Данные обновлены");
+    }
+
+    /**
+     * Очистка всех данных в таблице
+     * Метод запрашивает подтверждение у пользователя перед удалением всех записей.
+     * В случае подтверждения очищает репозиторий и обновляет отображение таблицы.
+     *
+     * @param actionEvent Событие, вызвавшее очистку (нажатие кнопки или пункта меню)
+     */
+    @FXML
+    private void handleClearAll(ActionEvent actionEvent) {
+        // Создаем диалоговое окно подтверждения действия
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Подтверждение");
+        alert.setHeaderText("Очистка всех данных");
+        alert.setContentText("Вы уверены, что хотите удалить все записи?");
+
+        // Отображаем диалог и ожидаем ответа пользователя
+        alert.showAndWait().ifPresent(response -> {
+            // Если пользователь подтвердил действие (нажал OK)
+            if (response == ButtonType.OK) {
+                // Очищаем репозиторий - удаляем все записи
+                repository.clearAll();
+
+                // Обновляем таблицу, чтобы отобразить пустой список
+                tableView.setItems(repository.getAllPersons());
+
+                // Выводим сообщение в консоль для отладки
+                System.out.println("Все данные очищены");
+            }
+            // Если пользователь нажал Cancel или закрыл окно - ничего не делаем
+        });
+    }
+
+    /**
+     * Показать информацию о программе
+     */
+    @FXML
+    private void handleAbout(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("О программе");
+        alert.setHeaderText("Приложение для работы с базой данных");
+        alert.setContentText(
+                "Версия: 1.0\n" +
+                        "Разработчик: tttmsnyy\n" +
+                        "Год: 2025\n\n" +
+                        "Приложение позволяет создавать, редактировать и удалять записи о людях.\n" +
+                        "Данные сохраняются в текстовые файлы."
+        );
+
+        // Показываем диалоговое окно и ждем, пока пользователь его закроет
+        alert.showAndWait();
     }
 }
