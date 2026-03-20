@@ -90,18 +90,6 @@
                             <Text styleClass="assistance-section-text">• Меню "Файл" → "Открыть" - загрузить данные из файла</Text>
                             <Text styleClass="assistance-section-text">• Меню "Файл" → "Создать" - очистить все данные</Text>
                         </VBox>
-
-                        <!-- Раздел 6: Горячие клавиши -->
-                        <VBox styleClass="assistance-section">
-                            <Text styleClass="assistance-section-title">
-                                Горячие клавиши
-                            </Text>
-                            <Text styleClass="assistance-section-text">• Ctrl+N - Создать новый файл</Text>
-                            <Text styleClass="assistance-section-text">• Ctrl+O - Открыть файл</Text>
-                            <Text styleClass="assistance-section-text">• Ctrl+S - Сохранить файл</Text>
-                            <Text styleClass="assistance-section-text">• Del - Удалить выбранную запись</Text>
-                            <Text styleClass="assistance-section-text">• F1 - Открыть справку</Text>
-                        </VBox>
                     </children>
                 </VBox>
             </content>
